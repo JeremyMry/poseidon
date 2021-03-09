@@ -3,16 +3,19 @@ package com.nnk.springboot.dto;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 public class BidListDto {
 
     @NotNull(message = "{NotEmpty.BidList.Account}")
     @NotEmpty(message = "{NotEmpty.BidList.Account}")
+    @Size(min=1, max=30)
     private String account;
 
     @NotNull(message = "{NotEmpty.BidList.Type}")
     @NotEmpty(message = "{NotEmpty.BidList.Type}")
+    @Size(min=1, max=30)
     private String type;
 
     @NotNull(message = "{NotNull.BidList.Quantity}")

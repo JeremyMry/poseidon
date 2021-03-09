@@ -37,7 +37,18 @@
 				</tr>
 			</thead>
 			<tbody>
-			<!-- TODO: Show all CurvePoint to the table, the action column will have Edit & Delete buttons -->
+			<tr th:each="curvePoint: ${curvePoints}">
+				<th th:text="${curvePoint.id}"></th>
+				<th th:text="${curvePoint.curveId}"></th>
+				<th th:text="${curvePoint.term}"></th>
+				<th th:text="${curvePoint.value}"></th>
+				<th>
+					<p>
+						<a href="update.html" th:href="@{/curvePoint/update/{id}(id=${curvePoint.id})}" class="btn btn-sm btn-success">Update</a>
+						<a href="list.html" th:href="@{/curvePoint/delete/{id}(id=${curvePoint.id})}" class="btn btn-sm btn-success">Delete</a>
+					</p>
+				</th>
+			</tr>
 			</tbody>
 		</table>
 	</div>

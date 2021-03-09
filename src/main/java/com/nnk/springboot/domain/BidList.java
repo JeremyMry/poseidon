@@ -5,7 +5,6 @@ import javax.validation.constraints.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "bidlist")
 public class BidList {
 
     @Id
@@ -14,10 +13,12 @@ public class BidList {
 
     @NotNull
     @NotEmpty
+    @Size(min=1, max=30)
     private String account;
 
     @NotNull
     @NotEmpty
+    @Size(min=1, max=30)
     private String type;
 
     @NotNull
@@ -26,39 +27,61 @@ public class BidList {
 
     private Double askQuantity;
 
+    private Double bid;
+
+    private Double ask;
+
+    @Size(max=125)
     private String benchmark;
 
     private Timestamp bidListDate;
 
+    @Size(max=125)
     private String commentary;
 
+    @Size(max=125)
     private String security;
 
+    @Size(max=10)
     private String status;
 
+    @Size(max=125)
     private String trader;
 
+    @Size(max=125)
     private String book;
 
+    @Size(max=125)
     private String creationName;
+
+    private Timestamp creationDate;
+
+    @Size(max=125)
+    private String revisionName;
 
     private Timestamp revisionDate;
 
+    @Size(max=125)
     private String dealName;
 
+    @Size(max=125)
     private String dealType;
 
+    @Size(max=125)
     private String sourceListId;
 
+    @Size(max=125)
     private String side;
 
     public BidList() {}
 
-    public BidList(@NotBlank String account, @NotBlank String type, @NotBlank Double bidQuantity, Double askQuantity, String benchmark, Timestamp bidListDate, String commentary, String security, String status, String trader, String book, String creationName, Timestamp revisionDate, String dealName, String dealType, String sourceListId, String side) {
+    public BidList(@NotNull @NotEmpty @Size(min = 1, max = 30) String account, @NotNull @NotEmpty @Size(min = 1, max = 30) String type, @NotNull @Min(value = 0) Double bidQuantity, Double askQuantity, Double bid, Double ask, @Size(max = 125) String benchmark, Timestamp bidListDate, @Size(max = 125) String commentary, @Size(max = 125) String security, @Size(max = 10) String status, @Size(max = 125) String trader, @Size(max = 125) String book, @Size(max = 125) String creationName, Timestamp creationDate, @Size(max = 125) String revisionName, Timestamp revisionDate, @Size(max = 125) String dealName, @Size(max = 125) String dealType, @Size(max = 125) String sourceListId, @Size(max = 125) String side) {
         this.account = account;
         this.type = type;
         this.bidQuantity = bidQuantity;
         this.askQuantity = askQuantity;
+        this.bid = bid;
+        this.ask = ask;
         this.benchmark = benchmark;
         this.bidListDate = bidListDate;
         this.commentary = commentary;
@@ -67,6 +90,8 @@ public class BidList {
         this.trader = trader;
         this.book = book;
         this.creationName = creationName;
+        this.creationDate = creationDate;
+        this.revisionName = revisionName;
         this.revisionDate = revisionDate;
         this.dealName = dealName;
         this.dealType = dealType;
@@ -76,10 +101,6 @@ public class BidList {
 
     public Integer getBidListId() {
         return bidListId;
-    }
-
-    public void setBidListId(Integer bidListId) {
-        this.bidListId = bidListId;
     }
 
     public String getAccount() {
@@ -112,6 +133,22 @@ public class BidList {
 
     public void setAskQuantity(Double askQuantity) {
         this.askQuantity = askQuantity;
+    }
+
+    public Double getBid() {
+        return bid;
+    }
+
+    public void setBid(Double bid) {
+        this.bid = bid;
+    }
+
+    public Double getAsk() {
+        return ask;
+    }
+
+    public void setAsk(Double ask) {
+        this.ask = ask;
     }
 
     public String getBenchmark() {
@@ -178,6 +215,22 @@ public class BidList {
         this.creationName = creationName;
     }
 
+    public Timestamp getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Timestamp creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public String getRevisionName() {
+        return revisionName;
+    }
+
+    public void setRevisionName(String revisionName) {
+        this.revisionName = revisionName;
+    }
+
     public Timestamp getRevisionDate() {
         return revisionDate;
     }
@@ -216,29 +269,5 @@ public class BidList {
 
     public void setSide(String side) {
         this.side = side;
-    }
-
-    @Override
-    public String toString() {
-        return "BidList{" +
-                "bidListId=" + bidListId +
-                ", account='" + account + '\'' +
-                ", type='" + type + '\'' +
-                ", bidQuantity=" + bidQuantity +
-                ", askQuantity=" + askQuantity +
-                ", benchmark='" + benchmark + '\'' +
-                ", bidListDate=" + bidListDate +
-                ", commentary='" + commentary + '\'' +
-                ", security='" + security + '\'' +
-                ", status='" + status + '\'' +
-                ", trader='" + trader + '\'' +
-                ", book='" + book + '\'' +
-                ", creationName='" + creationName + '\'' +
-                ", revisionDate=" + revisionDate +
-                ", dealName='" + dealName + '\'' +
-                ", dealType='" + dealType + '\'' +
-                ", sourceListId='" + sourceListId + '\'' +
-                ", side='" + side + '\'' +
-                '}';
     }
 }

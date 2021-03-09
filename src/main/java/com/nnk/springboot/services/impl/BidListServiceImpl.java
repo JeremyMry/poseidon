@@ -29,10 +29,11 @@ public class BidListServiceImpl implements IBidListService {
     @Override
     @Transactional
     public void updateBidList(Integer id, BidListDto BidListDto) {
-        BidList bidList = bidListRepository.findById(id).orElse(null);
+        BidList bidList = getSpecificBidListById(id);
         bidList.setAccount(BidListDto.getAccount());
         bidList.setType(BidListDto.getType());
         bidList.setBidQuantity(BidListDto.getBidQuantity());
+        bidList.setRevisionDate(Timestamp.from(Instant.now()));
         bidListRepository.save(bidList);
     }
 
@@ -43,7 +44,7 @@ public class BidListServiceImpl implements IBidListService {
         bidList.setAccount(bid.getAccount());
         bidList.setType(bid.getType());
         bidList.setBidQuantity(bid.getBidQuantity());
-        bidList.setBidListDate(Timestamp.from(Instant.now()));
+        bidList.setCreationDate(Timestamp.from(Instant.now()));
         bidListRepository.save(bidList);
     }
 
