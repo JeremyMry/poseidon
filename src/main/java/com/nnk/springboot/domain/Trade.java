@@ -1,93 +1,88 @@
 package com.nnk.springboot.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 import java.sql.Timestamp;
 
-
 @Entity
-@Table(name = "trade")
 public class Trade {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer tradeId;
 
-    @NotBlank
+    @NotNull
+    @Size(min=1, max=30)
     private String account;
 
-    @NotBlank
+    @NotNull
+    @Size(min=1, max=30)
     private String type;
 
-    @NotBlank
+    @NotNull
+    @Min(value = 0)
     private Double buyQuantity;
 
-    @NotBlank
     private Double sellQuantity;
 
-    @NotBlank
     private Double buyPrice;
 
-    @NotBlank
     private Double sellPrice;
 
-    @NotBlank
-    private String benchmark;
+    private Timestamp tradeDate;
 
-    @NotBlank
-    private Timestamp tradeData;
-
-    @NotBlank
+    @Size(max = 125)
     private String security;
 
-    @NotBlank
+    @Size(max = 125)
     private String status;
 
-    @NotBlank
+    @Size(max = 125)
     private String trader;
 
-    @NotBlank
+    @Size(max = 125)
+    private String benchmark;
+
+    @Size(max = 125)
     private String book;
 
-    @NotBlank
+    @Size(max = 125)
     private String creationName;
 
-    @NotBlank
     private Timestamp creationDate;
 
-    @NotBlank
+    @Size(max = 125)
     private String revisionName;
 
-    @NotBlank
     private Timestamp revisionDate;
 
-    @NotBlank
+    @Size(max = 125)
     private String dealName;
 
-    @NotBlank
+    @Size(max = 125)
     private String dealType;
 
-    @NotBlank
+    @Size(max = 125)
     private String sourceListId;
 
-    @NotBlank
+    @Size(max = 125)
     private String side;
 
     public Trade() {
     }
 
-    public Trade(@NotBlank String account, @NotBlank String type, @NotBlank Double buyQuantity, @NotBlank Double sellQuantity, @NotBlank Double buyPrice, @NotBlank Double sellPrice, @NotBlank String benchmark, @NotBlank Timestamp tradeData, @NotBlank String security, @NotBlank String status, @NotBlank String trader, @NotBlank String book, @NotBlank String creationName, @NotBlank Timestamp creationDate, @NotBlank String revisionName, @NotBlank Timestamp revisionDate, @NotBlank String dealName, @NotBlank String dealType, @NotBlank String sourceListId, @NotBlank String side) {
+    public Trade(@NotNull @Size(min = 1, max = 30) String account, @NotNull @Size(min = 1, max = 30) String type, @NotNull @Min(value = 0) Double buyQuantity, Double sellQuantity, Double buyPrice, Double sellPrice, Timestamp tradeDate, @Size(max = 125) String security, @Size(max = 125) String status, @Size(max = 125) String trader, @Size(max = 125) String benchmark, @Size(max = 125) String book, @Size(max = 125) String creationName, Timestamp creationDate, @Size(max = 125) String revisionName, Timestamp revisionDate, @Size(max = 125) String dealName, @Size(max = 125) String dealType, @Size(max = 125) String sourceListId, @Size(max = 125) String side) {
         this.account = account;
         this.type = type;
         this.buyQuantity = buyQuantity;
         this.sellQuantity = sellQuantity;
         this.buyPrice = buyPrice;
         this.sellPrice = sellPrice;
-        this.benchmark = benchmark;
-        this.tradeData = tradeData;
+        this.tradeDate = tradeDate;
         this.security = security;
         this.status = status;
         this.trader = trader;
+        this.benchmark = benchmark;
         this.book = book;
         this.creationName = creationName;
         this.creationDate = creationDate;
@@ -163,12 +158,12 @@ public class Trade {
         this.benchmark = benchmark;
     }
 
-    public Timestamp getTradeData() {
-        return tradeData;
+    public Timestamp getTradeDate() {
+        return tradeDate;
     }
 
-    public void setTradeData(Timestamp tradeData) {
-        this.tradeData = tradeData;
+    public void setTradeDate(Timestamp tradeDate) {
+        this.tradeDate = tradeDate;
     }
 
     public String getSecurity() {
@@ -265,32 +260,5 @@ public class Trade {
 
     public void setSide(String side) {
         this.side = side;
-    }
-
-    @Override
-    public String toString() {
-        return "Trade{" +
-                "tradeId=" + tradeId +
-                ", account='" + account + '\'' +
-                ", type='" + type + '\'' +
-                ", buyQuantity=" + buyQuantity +
-                ", sellQuantity=" + sellQuantity +
-                ", buyPrice=" + buyPrice +
-                ", sellPrice=" + sellPrice +
-                ", benchmark='" + benchmark + '\'' +
-                ", tradeData=" + tradeData +
-                ", security='" + security + '\'' +
-                ", status='" + status + '\'' +
-                ", trader='" + trader + '\'' +
-                ", book='" + book + '\'' +
-                ", creationName='" + creationName + '\'' +
-                ", creationDate=" + creationDate +
-                ", revisionName='" + revisionName + '\'' +
-                ", revisionDate=" + revisionDate +
-                ", dealName='" + dealName + '\'' +
-                ", dealType='" + dealType + '\'' +
-                ", sourceListId='" + sourceListId + '\'' +
-                ", side='" + side + '\'' +
-                '}';
     }
 }

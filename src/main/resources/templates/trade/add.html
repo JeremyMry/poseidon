@@ -14,11 +14,29 @@
 	</div>
 
 	<div class="row">
-		<form action="#" th:action="@{/trade/validate}" th:object="${trade}" method="post" class="form-horizontal" style="width: 100%">
-			<!--
-			TODO: Create a form to input the values of Trade, there are 2 buttons: Save data and Cancel to the list Trade
-			 -->
+		<form action="#" th:action="@{/trade/validate}" th:object="${tradeDto}" method="post" class="form-horizontal" style="width: 100%">
+			<div class="form-group">
+				<label for="account">Account:</label><br>
+				<input class="form-control" type="text" th:field="*{account}" id="account">
+				<div class="alert alert-danger" th:if="${#fields.hasErrors('account')}" th:errors="*{account}"></div><br>
+			</div>
 
+			<div class="form-group">
+				<label for="type">Type:</label><br>
+				<input class="form-control" type="text" th:field="*{type}" id="type" >
+				<div class="alert alert-danger" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></div><br>
+			</div>
+
+			<div class="form-group">
+				<label for="buyQuantity">Buy Quantity:</label><br>
+				<input class="form-control" type="number" step="any" th:field="*{buyQuantity}" id="buyQuantity">
+				<div class="alert alert-danger" th:if="${#fields.hasErrors('buyQuantity')}" th:errors="*{buyQuantity}"></div><br>
+			</div>
+
+			<div class="form-group">
+				<button type="submit" class="btn btn-sm btn-success">Submit</button>
+				<button type="cancel" onclick="window.location='/trade/list';return false;" class="btn btn-sm btn-success">Cancel</button>
+			</div>
 		</form>
 	</div>
 

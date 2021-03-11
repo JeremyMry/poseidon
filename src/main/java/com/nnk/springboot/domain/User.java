@@ -1,7 +1,7 @@
 package com.nnk.springboot.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "users")
@@ -11,22 +11,27 @@ public class User {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-    @NotBlank(message = "Username is mandatory")
+    @NotNull(message = "{NotNull.Field.Limitation}")
+    @Size(min = 1, max = 125, message= "{Size.Field.String}")
     private String username;
 
-    @NotBlank(message = "Password is mandatory")
+    @NotNull(message = "{NotNull.Field.Limitation}")
+    @Size(min = 1, max = 125, message= "{Size.Field.String}")
     private String password;
 
-    @NotBlank(message = "FullName is mandatory")
+    @NotNull(message = "{NotNull.Field.Limitation}")
+    @Size(min = 1, max = 125, message= "{Size.Field.String}")
     private String fullname;
 
-    @NotBlank(message = "Role is mandatory")
+    @NotNull
+    @NotEmpty
+    @Size(min=1, max=30)
     private String role;
 
     public User() {
     }
 
-    public User(@NotBlank(message = "Username is mandatory") String username, @NotBlank(message = "Password is mandatory") String password, @NotBlank(message = "FullName is mandatory") String fullname, @NotBlank(message = "Role is mandatory") String role) {
+    public User(@NotNull(message = "{NotNull.Field.Limitation}") @Size(min = 1, max = 125, message = "{Size.Field.String}") String username, @NotNull(message = "{NotNull.Field.Limitation}") @Size(min = 1, max = 125, message = "{Size.Field.String}") String password, @NotNull(message = "{NotNull.Field.Limitation}") @Size(min = 1, max = 125, message = "{Size.Field.String}") String fullname, @NotNull @NotEmpty @Size(min = 1, max = 30) String role) {
         this.username = username;
         this.password = password;
         this.fullname = fullname;

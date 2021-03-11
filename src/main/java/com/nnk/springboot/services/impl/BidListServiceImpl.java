@@ -28,23 +28,23 @@ public class BidListServiceImpl implements IBidListService {
 
     @Override
     @Transactional
-    public void updateBidList(Integer id, BidListDto BidListDto) {
-        BidList bidList = getSpecificBidListById(id);
-        bidList.setAccount(BidListDto.getAccount());
-        bidList.setType(BidListDto.getType());
-        bidList.setBidQuantity(BidListDto.getBidQuantity());
-        bidList.setRevisionDate(Timestamp.from(Instant.now()));
-        bidListRepository.save(bidList);
-    }
-
-    @Override
-    @Transactional
     public void createBidList(BidListDto bid) {
         BidList bidList = new BidList();
         bidList.setAccount(bid.getAccount());
         bidList.setType(bid.getType());
         bidList.setBidQuantity(bid.getBidQuantity());
         bidList.setCreationDate(Timestamp.from(Instant.now()));
+        bidListRepository.save(bidList);
+    }
+
+    @Override
+    @Transactional
+    public void updateBidList(Integer id, BidListDto BidListDto) {
+        BidList bidList = getSpecificBidListById(id);
+        bidList.setAccount(BidListDto.getAccount());
+        bidList.setType(BidListDto.getType());
+        bidList.setBidQuantity(BidListDto.getBidQuantity());
+        bidList.setRevisionDate(Timestamp.from(Instant.now()));
         bidListRepository.save(bidList);
     }
 

@@ -1,34 +1,35 @@
 package com.nnk.springboot.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "rating")
 public class Rating {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-    @NotBlank
+    @Size(min = 1, max = 125, message= "{Size.Field.String}")
     private String moodysRating;
 
-    @NotBlank
+    @Size(min = 1, max = 125, message= "{Size.Field.String}")
     private String sandRating;
 
-    @NotBlank
+    @Size(min = 1, max = 125, message= "{Size.Field.String}")
     private String fitchRating;
 
-    @NotBlank
-    private String orderNumber;
+    @Min(value = 1, message= "{MinValue.Field.Integer}")
+    private Integer orderNumber;
 
     public Rating() {
     }
 
-    public Rating(@NotBlank String moodysRating, @NotBlank String sandRating, @NotBlank String fitchRating, @NotBlank String orderNumber) {
+    public Rating(@Size(min = 1, max = 125, message = "{Size.Field.String}") String moodysRating, @Size(min = 1, max = 125, message = "{Size.Field.String}") String sandRating, @Size(min = 1, max = 125, message = "{Size.Field.String}") String fitchRating, @Min(value = 1, message = "{MinValue.Field.Integer}") Integer orderNumber) {
         this.moodysRating = moodysRating;
         this.sandRating = sandRating;
         this.fitchRating = fitchRating;
@@ -67,22 +68,11 @@ public class Rating {
         this.fitchRating = fitchRating;
     }
 
-    public String getOrderNumber() {
+    public Integer getOrderNumber() {
         return orderNumber;
     }
 
-    public void setOrderNumber(String orderNumber) {
+    public void setOrderNumber(Integer orderNumber) {
         this.orderNumber = orderNumber;
-    }
-
-    @Override
-    public String toString() {
-        return "Rating{" +
-                "id=" + id +
-                ", moodysRating='" + moodysRating + '\'' +
-                ", sandRating='" + sandRating + '\'' +
-                ", fitchRating='" + fitchRating + '\'' +
-                ", orderNumber='" + orderNumber + '\'' +
-                '}';
     }
 }

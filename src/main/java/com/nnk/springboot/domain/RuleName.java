@@ -1,39 +1,40 @@
 package com.nnk.springboot.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "rulename")
 public class RuleName {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-    @NotBlank
+    @Size(min= 1, max = 125, message = "{Size.Field.String}")
     private String name;
 
-    @NotBlank
+    @Size(min= 1, max = 125, message = "{Size.Field.String}")
     private String description;
 
-    @NotBlank
+    @Size(min= 1, max = 125, message = "{Size.Field.String}")
     private String json;
 
-    @NotBlank
+    @Size(min= 1, max = 125, message = "{Size.Field.String}")
     private String template;
 
-    @NotBlank
+    @Size(min= 1, max = 125, message = "{Size.Field.String}")
     private String sqlStr;
 
-    @NotBlank
+    @Size(min= 1, max = 125, message = "{Size.Field.String}")
     private String sqlPart;
 
     public RuleName() {
     }
 
-    public RuleName(@NotBlank String name, @NotBlank String description, @NotBlank String json, @NotBlank String template, @NotBlank String sqlStr, @NotBlank String sqlPart) {
+    public RuleName(@Size(min = 1, max = 125, message = "{Size.Field.String}") String name, @Size(min = 1, max = 125, message = "{Size.Field.String}") String description, @Size(min = 1, max = 125, message = "{Size.Field.String}") String json, @Size(min = 1, max = 125, message = "{Size.Field.String}") String template, @Size(min = 1, max = 125, message = "{Size.Field.String}") String sqlStr, @Size(min = 1, max = 125, message = "{Size.Field.String}") String sqlPart) {
         this.name = name;
         this.description = description;
         this.json = json;

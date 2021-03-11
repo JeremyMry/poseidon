@@ -11,9 +11,9 @@ public interface IBidListService {
 
     public List<BidList> getAllBidList();
 
-    public void updateBidList(Integer id, BidListDto BidListDto);
-
     public void createBidList(BidListDto bid);
+
+    public void updateBidList(Integer id, BidListDto BidListDto);
 
     public void deleteBidList(Integer id);
 }

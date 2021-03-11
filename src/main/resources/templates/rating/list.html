@@ -30,15 +30,26 @@
 			<thead>
 				<tr>
 					<th>Id</th>
-					<th>MoodysRating</th>
-					<th>SandPRating</th>
-					<th>FitchRating</th>
-					<th>Order</th>
+					<th>Moody's Rating</th>
+					<th>SandP Rating</th>
+					<th>Fitch Rating</th>
+					<th>Order Number</th>
 					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
-			<!-- TODO: Show all Rating to the table, the Action column will have Edit & Delete buttons -->
+			<tr th:each="rating: ${ratingList}">
+				<th th:text="${rating.id}"></th>
+				<th th:text="${rating.moodysRating}"></th>
+				<th th:text="${rating.sandRating}"></th>
+				<th th:text="${rating.fitchRating}"></th>
+				<th th:text="${rating.orderNumber}"></th>
+				<th>
+					<p>
+						<a href="update.html" th:href="@{/rating/update/{id}(id=${rating.id})}" class="btn btn-sm btn-success">Update</a>
+						<a href="list.html" th:href="@{/rating/delete/{id}(id=${rating.id})}" class="btn btn-sm btn-success">Delete</a>
+					</p>
+				</th>
 			</tbody>
 		</table>
 	</div>

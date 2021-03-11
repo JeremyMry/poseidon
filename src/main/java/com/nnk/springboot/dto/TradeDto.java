@@ -5,8 +5,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
-public class BidListDto {
+public class TradeDto {
 
     @NotNull(message = "{NotNull.Field.Limitation}")
     @Size(min=1, max=30, message = "{Size.Field.Limitation}")
@@ -17,13 +16,13 @@ public class BidListDto {
     private String type;
 
     @NotNull(message = "{NotNull.Field.Limitation}")
-    @Min(value = 0, message = "{Size.Field.Limitation}")
-    private Double bidQuantity;
+    @Min(value = 0, message = "{Size.Field.Double}")
+    private Double buyQuantity;
 
-    public BidListDto(@NotNull(message = "{NotNull.Field.Limitation}") @Size(min = 1, max = 30, message = "{Size.Field.Limitation}") String account, @NotNull(message = "{NotNull.Field.Limitation}") @Size(min = 1, max = 30, message = "{Size.Field.Limitation}") String type, @NotNull(message = "{NotNull.Field.Limitation}") @Min(value = 0, message = "{Size.Field.Limitation}") Double bidQuantity) {
+    public TradeDto(@NotNull(message = "{NotNull.Field.Limitation}") @Size(min = 1, max = 30, message = "{Size.Field.Limitation}") String account, @NotNull(message = "{NotNull.Field.Limitation}") @Size(min = 1, max = 30, message = "{Size.Field.Limitation}") String type, @NotNull(message = "{NotNull.Field.Limitation}") @Min(value = 0, message = "{Size.Field.Double}") Double buyQuantity) {
         this.account = account;
         this.type = type;
-        this.bidQuantity = bidQuantity;
+        this.buyQuantity = buyQuantity;
     }
 
     public String getAccount() {
@@ -42,11 +41,11 @@ public class BidListDto {
         this.type = type;
     }
 
-    public Double getBidQuantity() {
-        return bidQuantity;
+    public Double getBuyQuantity() {
+        return buyQuantity;
     }
 
-    public void setBidQuantity(Double bidQuantity) {
-        this.bidQuantity = bidQuantity;
+    public void setBuyQuantity(Double buyQuantity) {
+        this.buyQuantity = buyQuantity;
     }
 }
