@@ -1,8 +1,6 @@
 package com.nnk.springboot.services;
 
-import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.Trade;
-import com.nnk.springboot.dto.BidListDto;
 import com.nnk.springboot.dto.TradeDto;
 
 import java.util.List;

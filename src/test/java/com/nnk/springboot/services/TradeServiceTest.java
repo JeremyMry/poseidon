@@ -4,11 +4,14 @@ import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.dto.TradeDto;
 import com.nnk.springboot.repositories.TradeRepository;
 import com.nnk.springboot.services.impl.TradeServiceImpl;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DirtiesContext(classMode=DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @SpringBootTest
@@ -21,7 +24,7 @@ public class TradeServiceTest {
     TradeRepository tradeRepository;
 
     @Test
-    public void getSpecificBidListTest() {
+    public void getSpecificTradeTest() {
         Trade trade = new Trade();
         trade.setAccount("a");
         trade.setType("ab");
@@ -36,12 +39,17 @@ public class TradeServiceTest {
     }
 
     @Test
-    public void getSpecificBidListThatDoesntExistTest() {
-        Assertions.assertNull(tradeService.getSpecificTradeById(1));
+    public void getSpecificTradeThatDoesntExistTest() {
+        Exception exception = Assert.assertThrows(IllegalArgumentException.class, () -> tradeService.getSpecificTradeById(1));
+
+        String expectedMessage = "Invalid Trade Id: 1";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 
     @Test
-    public void getAllBidListTest() {
+    public void getAllTradesTest() {
         Trade trade = new Trade();
         trade.setAccount("a");
         trade.setType("ab");
@@ -61,13 +69,13 @@ public class TradeServiceTest {
     }
 
     @Test
-    public void getAllBidListWhenThereIsNone() {
+    public void getAllTradesWhenThereIsNone() {
         Assertions.assertEquals(tradeService.getAllTrade().size(), 0);
         Assertions.assertNotNull(tradeService.getAllTrade());
     }
 
     @Test
-    public void createBidListTest() {
+    public void createTradeTest() {
         TradeDto tradeDto = new TradeDto("a", "ab", 15.0);
 
         tradeService.createTrade(tradeDto);
@@ -79,7 +87,7 @@ public class TradeServiceTest {
     }
 
     @Test
-    public void updateBidListTest() {
+    public void updateTradeTest() {
         Trade trade = new Trade();
         trade.setAccount("a");
         trade.setType("ab");
@@ -98,7 +106,7 @@ public class TradeServiceTest {
     }
 
     @Test
-    public void deleteBidListTest() {
+    public void deleteTradeTest() {
         Trade trade = new Trade();
         trade.setAccount("a");
         trade.setType("ab");

@@ -3,11 +3,14 @@ package com.nnk.springboot.services;
 import com.nnk.springboot.domain.RuleName;
 import com.nnk.springboot.repositories.RuleNameRepository;
 import com.nnk.springboot.services.impl.RuleNameServiceImpl;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DirtiesContext(classMode=DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @SpringBootTest
@@ -35,12 +38,17 @@ public class RuleNameServiceTest {
     }
 
     @Test
-    public void getSpecificBidListThatDoesntExistTest() {
-        Assertions.assertNull(ruleNameService.getSpecificRuleNameById(1));
+    public void getSpecificRuleNameThatDoesntExistTest() {
+        Exception exception = Assert.assertThrows(IllegalArgumentException.class, () -> ruleNameService.getSpecificRuleNameById(1));
+
+        String expectedMessage = "Invalid Rule Name Id: 1";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 
     @Test
-    public void getAllBidListTest() {
+    public void getAllRuleNameTest() {
         RuleName ruleName = new RuleName("a", "ab", "abc", "abcd", "abcde", "abcdef");
         RuleName ruleName1 = new RuleName("ab", "abc", "abcd", "abcde", "abcdef", "abcdefg");
 
@@ -51,13 +59,13 @@ public class RuleNameServiceTest {
     }
 
     @Test
-    public void getAllBidListWhenThereIsNone() {
+    public void getAllRuleNameWhenThereIsNone() {
         Assertions.assertEquals(ruleNameService.getAllRuleName().size(), 0);
         Assertions.assertNotNull(ruleNameService.getAllRuleName());
     }
 
     @Test
-    public void createBidListTest() {
+    public void createRuleNameTest() {
         RuleName ruleName = new RuleName("a", "ab", "abc", "abcd", "abcde", "abcdef");
 
         ruleNameService.createRuleName(ruleName);
@@ -71,7 +79,7 @@ public class RuleNameServiceTest {
     }
 
     @Test
-    public void updateBidListTest() {
+    public void updateRuleNameTest() {
         RuleName ruleName = new RuleName("a", "ab", "abc", "abcd", "abcde", "abcdef");
         ruleNameRepository.save(ruleName);
 
@@ -88,7 +96,7 @@ public class RuleNameServiceTest {
     }
 
     @Test
-    public void deleteBidListTest() {
+    public void deleteRuleNameTest() {
         RuleName ruleName = new RuleName("a", "ab", "abc", "abcd", "abcde", "abcdef");
         ruleNameRepository.save(ruleName);
 

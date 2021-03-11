@@ -3,11 +3,14 @@ package com.nnk.springboot.services;
 import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.repositories.RatingRepository;
 import com.nnk.springboot.services.impl.RatingServiceImpl;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DirtiesContext(classMode=DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @SpringBootTest
@@ -20,7 +23,7 @@ public class RatingServiceTest {
     RatingRepository ratingRepository;
 
     @Test
-    public void getSpecificBidListTest() {
+    public void getSpecificRatingTest() {
         Rating rating = new Rating();
         rating.setSandRating("aaa");
         rating.setMoodysRating("aa");
@@ -37,12 +40,17 @@ public class RatingServiceTest {
     }
 
     @Test
-    public void getSpecificBidListThatDoesntExistTest() {
-        Assertions.assertNull(ratingService.getSpecificRatingById(1));
+    public void getSpecificRatingThatDoesntExistTest() {
+        Exception exception = Assert.assertThrows(IllegalArgumentException.class, () -> ratingService.getSpecificRatingById(1));
+
+        String expectedMessage = "Invalid Rating Id: 1";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 
     @Test
-    public void getAllBidListTest() {
+    public void getAllRatingsTest() {
         Rating rating = new Rating();
         rating.setSandRating("aaa");
         rating.setMoodysRating("aa");
@@ -62,13 +70,13 @@ public class RatingServiceTest {
     }
 
     @Test
-    public void getAllBidListWhenThereIsNone() {
+    public void getAllRatingsWhenThereIsNone() {
         Assertions.assertEquals(ratingService.getAllRating().size(), 0);
         Assertions.assertNotNull(ratingService.getAllRating());
     }
 
     @Test
-    public void createBidListTest() {
+    public void createRatingTest() {
         Rating rating = new Rating();
         rating.setSandRating("aaa");
         rating.setMoodysRating("aa");
@@ -84,7 +92,7 @@ public class RatingServiceTest {
     }
 
     @Test
-    public void updateBidListTest() {
+    public void updateRatingTest() {
         Rating rating = new Rating();
         rating.setSandRating("aaa");
         rating.setMoodysRating("aa");
@@ -108,7 +116,7 @@ public class RatingServiceTest {
     }
 
     @Test
-    public void deleteBidListTest() {
+    public void deleteRatingTest() {
         Rating rating = new Rating();
         rating.setSandRating("aaa");
         rating.setMoodysRating("aa");

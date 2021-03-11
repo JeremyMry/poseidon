@@ -4,11 +4,14 @@ import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.dto.CurvePointDto;
 import com.nnk.springboot.repositories.CurvePointRepository;
 import com.nnk.springboot.services.impl.CurvePointServiceImpl;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DirtiesContext(classMode=DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @SpringBootTest
@@ -21,7 +24,7 @@ public class CurvePointServiceTest {
     CurvePointRepository curvePointRepository;
 
     @Test
-    public void getSpecificBidListTest() {
+    public void getSpecificCurvePointTest() {
         CurvePoint curvePoint = new CurvePoint();
         curvePoint.setCurveId(1);
         curvePoint.setTerm(11.0);
@@ -36,12 +39,17 @@ public class CurvePointServiceTest {
     }
 
     @Test
-    public void getSpecificBidListThatDoesntExistTest() {
-        Assertions.assertNull(curvePointService.getSpecificCurvePointById(1));
+    public void getSpecificCurvePointThatDoesntExistTest() {
+        Exception exception = Assert.assertThrows(IllegalArgumentException.class, () -> curvePointService.getSpecificCurvePointById(1));
+
+        String expectedMessage = "Invalid Curve Point Id: 1";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 
     @Test
-    public void getAllBidListTest() {
+    public void getAllCurvePointsTest() {
         CurvePoint curvePoint = new CurvePoint();
         curvePoint.setCurveId(1);
         curvePoint.setTerm(11.0);
@@ -60,13 +68,13 @@ public class CurvePointServiceTest {
     }
 
     @Test
-    public void getAllBidListWhenThereIsNone() {
+    public void getAllCurvePointsWhenThereIsNone() {
         Assertions.assertEquals(curvePointService.getAllCurvePoint().size(), 0);
         Assertions.assertNotNull(curvePointService.getAllCurvePoint());
     }
 
     @Test
-    public void createBidListTest() {
+    public void createCurvePointsTest() {
         CurvePointDto curvePointDto = new CurvePointDto(1, 11.0, 15.0);
 
         curvePointService.createCurvePoint(curvePointDto);
@@ -77,7 +85,7 @@ public class CurvePointServiceTest {
     }
 
     @Test
-    public void updateBidListTest() {
+    public void updateCurvePointsTest() {
         CurvePoint curvePoint = new CurvePoint();
         curvePoint.setCurveId(1);
         curvePoint.setTerm(11.0);
@@ -94,7 +102,7 @@ public class CurvePointServiceTest {
     }
 
     @Test
-    public void deleteBidListTest() {
+    public void deleteCurvePointsTest() {
         CurvePoint curvePoint = new CurvePoint();
         curvePoint.setCurveId(1);
         curvePoint.setTerm(11.0);

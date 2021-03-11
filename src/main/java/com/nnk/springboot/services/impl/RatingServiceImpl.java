@@ -3,6 +3,7 @@ package com.nnk.springboot.services.impl;
 import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.repositories.RatingRepository;
 import com.nnk.springboot.services.IRatingService;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +15,23 @@ public class RatingServiceImpl implements IRatingService {
     @Autowired
     RatingRepository ratingRepository;
 
-    public Rating getSpecificRatingById(Integer id) { return ratingRepository.findById(id).orElse(null); }
+    @Autowired
+    Logger logger;
 
-    public List<Rating> getAllRating() { return ratingRepository.findAll(); }
+    public Rating getSpecificRatingById(Integer id) {
+        logger.info("Rating " + id + " find");
+        return ratingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Rating Id: " + id));
+    }
 
-    public void createRating(Rating rating) { ratingRepository.save(rating); }
+    public List<Rating> getAllRating() {
+        logger.info("Rating List find");
+        return ratingRepository.findAll();
+    }
+
+    public void createRating(Rating rating) {
+        logger.info("Rating created");
+        ratingRepository.save(rating);
+    }
 
     public void updateRating(Integer id, Rating rating) {
         Rating ratingToUpdate = getSpecificRatingById(id);
@@ -26,8 +39,12 @@ public class RatingServiceImpl implements IRatingService {
         ratingToUpdate.setSandRating(rating.getSandRating());
         ratingToUpdate.setMoodysRating(rating.getMoodysRating());
         ratingToUpdate.setOrderNumber(rating.getOrderNumber());
+        logger.info("Rating " + id + " updated");
         ratingRepository.save(ratingToUpdate);
     }
 
-    public void deleteRating(Integer id) { ratingRepository.deleteById(id); }
+    public void deleteRating(Integer id) {
+        logger.info("Rating " + id + " deleted");
+        ratingRepository.deleteById(id);
+    }
 }

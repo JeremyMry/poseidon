@@ -4,11 +4,14 @@ import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.dto.BidListDto;
 import com.nnk.springboot.repositories.BidListRepository;
 import com.nnk.springboot.services.impl.BidListServiceImpl;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DirtiesContext(classMode=DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @SpringBootTest
@@ -37,7 +40,12 @@ public class BidListServiceTest {
 
     @Test
     public void getSpecificBidListThatDoesntExistTest() {
-        Assertions.assertNull(bidListService.getSpecificBidListById(1));
+        Exception exception = Assert.assertThrows(IllegalArgumentException.class, () -> bidListService.getSpecificBidListById(1));
+
+        String expectedMessage = "Invalid bidList Id: 1";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 
     @Test

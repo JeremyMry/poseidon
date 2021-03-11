@@ -5,6 +5,7 @@ import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.dto.TradeDto;
 import com.nnk.springboot.repositories.TradeRepository;
 import com.nnk.springboot.services.ITradeService;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +20,18 @@ public class TradeServiceImpl implements ITradeService {
     @Autowired
     TradeRepository tradeRepository;
 
+    @Autowired
+    Logger logger;
+
     @Override
     public Trade getSpecificTradeById(Integer id) {
-        return tradeRepository.findById(id).orElse(null);
+        logger.info("Trade " + id + " find");
+        return tradeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Trade Id: " + id));
     }
 
     @Override
     public List<Trade> getAllTrade() {
+        logger.info("Trade List find");
         return tradeRepository.findAll();
     }
 
@@ -37,6 +43,7 @@ public class TradeServiceImpl implements ITradeService {
         trade.setType(tradeDto.getType());
         trade.setBuyQuantity(tradeDto.getBuyQuantity());
         trade.setCreationDate(Timestamp.from(Instant.now()));
+        logger.info("Trade created");
         tradeRepository.save(trade);
     }
 
@@ -48,12 +55,14 @@ public class TradeServiceImpl implements ITradeService {
         trade.setType(tradeDto.getType());
         trade.setBuyQuantity(tradeDto.getBuyQuantity());
         trade.setRevisionDate(Timestamp.from(Instant.now()));
+        logger.info("Trade " + id + " updated");
         tradeRepository.save(trade);
     }
 
     @Override
     @Transactional
     public void deleteTrade(Integer id) {
+        logger.info("Trade " + id + " deleted");
         tradeRepository.deleteById(id);
     }
 }
