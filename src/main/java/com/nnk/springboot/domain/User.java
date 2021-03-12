@@ -11,27 +11,27 @@ public class User {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-    @NotNull(message = "{NotNull.Field.Limitation}")
-    @Size(min = 1, max = 125, message= "{Size.Field.String}")
+    @Size(max = 125, message= "{Size.Field.String}")
+    @NotEmpty(message = "{Empty.Field.String}")
     private String username;
 
-    @NotNull(message = "{NotNull.Field.Limitation}")
-    @Size(min = 1, max = 125, message= "{Size.Field.String}")
+    @NotEmpty(message = "{Empty.Field.String}")
+    @Size(max = 125, message = "{Size.Field.String}")
+    @Pattern(regexp = "^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[!\"#$%&'()*+,-./:;<=>?@\\[\\]^_`{|}~\\]])[a-zA-Z0-9!\"#$%&'()*+,-./:;<=>?@\\[\\]^_`{|}~\\]]{8,}$", message="{Password.Constraint.Validation}")
     private String password;
 
-    @NotNull(message = "{NotNull.Field.Limitation}")
-    @Size(min = 1, max = 125, message= "{Size.Field.String}")
+    @Size(max = 125, message= "{Size.Field.String}")
+    @NotEmpty(message = "{Empty.Field.String}")
     private String fullname;
 
-    @NotNull
-    @NotEmpty
-    @Size(min=1, max=30)
+    @Size(max = 125, message= "{Size.Field.String}")
+    @NotEmpty(message = "{Empty.Field.String}")
     private String role;
 
     public User() {
     }
 
-    public User(@NotNull(message = "{NotNull.Field.Limitation}") @Size(min = 1, max = 125, message = "{Size.Field.String}") String username, @NotNull(message = "{NotNull.Field.Limitation}") @Size(min = 1, max = 125, message = "{Size.Field.String}") String password, @NotNull(message = "{NotNull.Field.Limitation}") @Size(min = 1, max = 125, message = "{Size.Field.String}") String fullname, @NotNull @NotEmpty @Size(min = 1, max = 30) String role) {
+    public User(@Size(max = 125, message = "{Size.Field.String}") @NotEmpty(message = "{Empty.Field.String}") String username, @NotEmpty(message = "{Empty.Field.String}") @Size(max = 125, message = "{Size.Field.Password}") @Pattern(regexp = "^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[!\"#$%&'()*+,-./:;<=>?@\\[\\]^_`{|}~\\]])[a-zA-Z0-9!\"#$%&'()*+,-./:;<=>?@\\[\\]^_`{|}~\\]]{8,}$", message = "The password is incorrect") String password, @Size(max = 125, message = "{Size.Field.String}") @NotEmpty(message = "{Empty.Field.String}") String fullname, @Size(max = 125, message = "{Size.Field.String}") @NotEmpty(message = "{Empty.Field.String}") String role) {
         this.username = username;
         this.password = password;
         this.fullname = fullname;

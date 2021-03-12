@@ -5,6 +5,7 @@ import com.nnk.springboot.repositories.UserRepository;
 import com.nnk.springboot.services.IUserService;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +17,6 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     UserRepository userRepository;
-
-    @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     Logger logger;
@@ -48,7 +46,7 @@ public class UserServiceImpl implements IUserService {
             return false;
         } else {
             User newUser = new User(user.getUsername(), user.getPassword(), user.getFullname(), user.getRole());
-            newUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+            newUser.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
             logger.info("User created");
             userRepository.save(newUser);
             return true;
@@ -61,7 +59,7 @@ public class UserServiceImpl implements IUserService {
         User userToUpdate = getSpecificUserById(id);
         userToUpdate.setFullname(user.getFullname());
         userToUpdate.setUsername(user.getUsername());
-        userToUpdate.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        userToUpdate.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userToUpdate.setRole(user.getRole());
         logger.info("User " + id + " updated");
         userRepository.save(userToUpdate);

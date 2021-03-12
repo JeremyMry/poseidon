@@ -1,10 +1,7 @@
 package com.nnk.springboot.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -14,22 +11,26 @@ public class Rating {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-    @Size(min = 1, max = 125, message= "{Size.Field.String}")
+    @Size(max = 125, message= "{Size.Field.String}")
+    @NotEmpty(message = "{Empty.Field.String}")
     private String moodysRating;
 
-    @Size(min = 1, max = 125, message= "{Size.Field.String}")
+    @Size(max = 125, message= "{Size.Field.String}")
+    @NotEmpty(message = "{Empty.Field.String}")
     private String sandRating;
 
-    @Size(min = 1, max = 125, message= "{Size.Field.String}")
+    @Size(max = 125, message= "{Size.Field.String}")
+    @NotEmpty(message = "{Empty.Field.String}")
     private String fitchRating;
 
     @Min(value = 1, message= "{MinValue.Field.Integer}")
+    @NotNull(message = "{NotNull.Field.Limitation}")
     private Integer orderNumber;
 
     public Rating() {
     }
 
-    public Rating(@Size(min = 1, max = 125, message = "{Size.Field.String}") String moodysRating, @Size(min = 1, max = 125, message = "{Size.Field.String}") String sandRating, @Size(min = 1, max = 125, message = "{Size.Field.String}") String fitchRating, @Min(value = 1, message = "{MinValue.Field.Integer}") Integer orderNumber) {
+    public Rating(@Size(max = 125, message = "{Size.Field.String}") @NotEmpty(message = "{Empty.Field.String}") String moodysRating, @Size(max = 125, message = "{Size.Field.String}") @NotEmpty(message = "{Empty.Field.String}") String sandRating, @Size(max = 125, message = "{Size.Field.String}") @NotEmpty(message = "{Empty.Field.String}") String fitchRating, @Min(value = 1, message = "{MinValue.Field.Integer}") @NotNull(message = "{NotNull.Field.Limitation}") Integer orderNumber) {
         this.moodysRating = moodysRating;
         this.sandRating = sandRating;
         this.fitchRating = fitchRating;

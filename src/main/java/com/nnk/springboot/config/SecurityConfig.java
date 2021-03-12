@@ -18,20 +18,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
-    @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
-
     @Override
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder.userDetailsService(customUserDetailsService).passwordEncoder(bCryptPasswordEncoder);
+        authenticationManagerBuilder.userDetailsService(customUserDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/user/**").permitAll()
-                .antMatchers("/bidList/**", "/rating/**", "/ruleName/**", "/trade/**", "/curvePoint/**").authenticated()
-                .antMatchers("/admin/home", "/secure/article-details").hasAnyAuthority("ADMIN")
+                .antMatchers("/user/add", "/user/validate").permitAll()
+                .antMatchers("/bidList/**", "/rating/**", "/ruleName/**", "/trade/**", "/curvePoint/**", "/user/list").authenticated()
+                .antMatchers("/admin/home", "/secure/article-details", "/user/**").hasAnyAuthority("ADMIN")
 
                 .and().formLogin()
                 .defaultSuccessUrl("/bidList/list")

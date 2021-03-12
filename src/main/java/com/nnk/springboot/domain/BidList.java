@@ -13,12 +13,12 @@ public class BidList {
 
     @NotNull
     @NotEmpty
-    @Size(min=1, max=30)
+    @Size(max =30)
     private String account;
 
     @NotNull
     @NotEmpty
-    @Size(min=1, max=30)
+    @Size(max =30)
     private String type;
 
     @NotNull
@@ -75,7 +75,7 @@ public class BidList {
 
     public BidList() {}
 
-    public BidList(@NotNull @NotEmpty @Size(min = 1, max = 30) String account, @NotNull @NotEmpty @Size(min = 1, max = 30) String type, @NotNull @Min(value = 0) Double bidQuantity, Double askQuantity, Double bid, Double ask, @Size(max = 125) String benchmark, Timestamp bidListDate, @Size(max = 125) String commentary, @Size(max = 125) String security, @Size(max = 10) String status, @Size(max = 125) String trader, @Size(max = 125) String book, @Size(max = 125) String creationName, Timestamp creationDate, @Size(max = 125) String revisionName, Timestamp revisionDate, @Size(max = 125) String dealName, @Size(max = 125) String dealType, @Size(max = 125) String sourceListId, @Size(max = 125) String side) {
+    public BidList(@NotNull @NotEmpty @Size(max = 30) String account, @NotNull @NotEmpty @Size(max = 30) String type, @NotNull @Min(value = 0) Double bidQuantity, Double askQuantity, Double bid, Double ask, @Size(max = 125) String benchmark, Timestamp bidListDate, @Size(max = 125) String commentary, @Size(max = 125) String security, @Size(max = 10) String status, @Size(max = 125) String trader, @Size(max = 125) String book, @Size(max = 125) String creationName, Timestamp creationDate, @Size(max = 125) String revisionName, Timestamp revisionDate, @Size(max = 125) String dealName, @Size(max = 125) String dealType, @Size(max = 125) String sourceListId, @Size(max = 125) String side) {
         this.account = account;
         this.type = type;
         this.bidQuantity = bidQuantity;

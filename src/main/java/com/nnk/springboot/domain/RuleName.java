@@ -3,6 +3,7 @@ package com.nnk.springboot.domain;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 
@@ -13,28 +14,34 @@ public class RuleName {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-    @Size(min= 1, max = 125, message = "{Size.Field.String}")
+    @Size(max = 125, message= "{Size.Field.String}")
+    @NotEmpty(message = "{Empty.Field.String}")
     private String name;
 
-    @Size(min= 1, max = 125, message = "{Size.Field.String}")
+    @Size(max = 125, message= "{Size.Field.String}")
+    @NotEmpty(message = "{Empty.Field.String}")
     private String description;
 
-    @Size(min= 1, max = 125, message = "{Size.Field.String}")
+    @Size(max = 125, message= "{Size.Field.String}")
+    @NotEmpty(message = "{Empty.Field.String}")
     private String json;
 
-    @Size(min= 1, max = 125, message = "{Size.Field.String}")
+    @Size(max = 125, message= "{Size.Field.String}")
+    @NotEmpty(message = "{Empty.Field.String}")
     private String template;
 
-    @Size(min= 1, max = 125, message = "{Size.Field.String}")
+    @Size(max = 125, message= "{Size.Field.String}")
+    @NotEmpty(message = "{Empty.Field.String}")
     private String sqlStr;
 
-    @Size(min= 1, max = 125, message = "{Size.Field.String}")
+    @Size(max = 125, message= "{Size.Field.String}")
+    @NotEmpty(message = "{Empty.Field.String}")
     private String sqlPart;
 
     public RuleName() {
     }
 
-    public RuleName(@Size(min = 1, max = 125, message = "{Size.Field.String}") String name, @Size(min = 1, max = 125, message = "{Size.Field.String}") String description, @Size(min = 1, max = 125, message = "{Size.Field.String}") String json, @Size(min = 1, max = 125, message = "{Size.Field.String}") String template, @Size(min = 1, max = 125, message = "{Size.Field.String}") String sqlStr, @Size(min = 1, max = 125, message = "{Size.Field.String}") String sqlPart) {
+    public RuleName(@Size(max = 125, message = "{Size.Field.String}") @NotEmpty(message = "{Empty.Field.String}") String name, @Size(max = 125, message = "{Size.Field.String}") @NotEmpty(message = "{Empty.Field.String}") String description, @Size(max = 125, message = "{Size.Field.String}") @NotEmpty(message = "{Empty.Field.String}") String json, @Size(max = 125, message = "{Size.Field.String}") @NotEmpty(message = "{Empty.Field.String}") String template, @Size(max = 125, message = "{Size.Field.String}") @NotEmpty(message = "{Empty.Field.String}") String sqlStr, @Size(max = 125, message = "{Size.Field.String}") @NotEmpty(message = "{Empty.Field.String}") String sqlPart) {
         this.name = name;
         this.description = description;
         this.json = json;

@@ -12,11 +12,13 @@ public class Trade {
     private Integer tradeId;
 
     @NotNull
-    @Size(min=1, max=30)
+    @NotEmpty
+    @Size(max =30)
     private String account;
 
     @NotNull
-    @Size(min=1, max=30)
+    @NotEmpty
+    @Size(max =30)
     private String type;
 
     @NotNull
@@ -71,7 +73,7 @@ public class Trade {
     public Trade() {
     }
 
-    public Trade(@NotNull @Size(min = 1, max = 30) String account, @NotNull @Size(min = 1, max = 30) String type, @NotNull @Min(value = 0) Double buyQuantity, Double sellQuantity, Double buyPrice, Double sellPrice, Timestamp tradeDate, @Size(max = 125) String security, @Size(max = 125) String status, @Size(max = 125) String trader, @Size(max = 125) String benchmark, @Size(max = 125) String book, @Size(max = 125) String creationName, Timestamp creationDate, @Size(max = 125) String revisionName, Timestamp revisionDate, @Size(max = 125) String dealName, @Size(max = 125) String dealType, @Size(max = 125) String sourceListId, @Size(max = 125) String side) {
+    public Trade(@NotNull @Size(max = 30) String account, @NotNull @Size(max = 30) String type, @NotNull @Min(value = 0) Double buyQuantity, Double sellQuantity, Double buyPrice, Double sellPrice, Timestamp tradeDate, @Size(max = 125) String security, @Size(max = 125) String status, @Size(max = 125) String trader, @Size(max = 125) String benchmark, @Size(max = 125) String book, @Size(max = 125) String creationName, Timestamp creationDate, @Size(max = 125) String revisionName, Timestamp revisionDate, @Size(max = 125) String dealName, @Size(max = 125) String dealType, @Size(max = 125) String sourceListId, @Size(max = 125) String side) {
         this.account = account;
         this.type = type;
         this.buyQuantity = buyQuantity;

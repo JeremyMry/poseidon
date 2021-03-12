@@ -1,26 +1,25 @@
 package com.nnk.springboot.dto;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 
 public class BidListDto {
 
     @NotNull(message = "{NotNull.Field.Limitation}")
-    @Size(min=1, max=30, message = "{Size.Field.Limitation}")
+    @NotEmpty(message = "{Empty.Field.String}")
+    @Size(max =30, message = "{Size.Field.Limitation}")
     private String account;
 
     @NotNull(message = "{NotNull.Field.Limitation}")
-    @Size(min=1, max=30, message = "{Size.Field.Limitation}")
+    @NotEmpty(message = "{Empty.Field.String}")
+    @Size(max =30, message = "{Size.Field.Limitation}")
     private String type;
 
     @NotNull(message = "{NotNull.Field.Limitation}")
-    @Min(value = 0, message = "{Size.Field.Limitation}")
+    @Min(value = 0, message = "{Size.Field.Double}")
     private Double bidQuantity;
 
-    public BidListDto(@NotNull(message = "{NotNull.Field.Limitation}") @Size(min = 1, max = 30, message = "{Size.Field.Limitation}") String account, @NotNull(message = "{NotNull.Field.Limitation}") @Size(min = 1, max = 30, message = "{Size.Field.Limitation}") String type, @NotNull(message = "{NotNull.Field.Limitation}") @Min(value = 0, message = "{Size.Field.Limitation}") Double bidQuantity) {
+    public BidListDto(@NotNull(message = "{NotNull.Field.Limitation}") @NotEmpty(message = "{Empty.Field.String}") @Size(max = 30, message = "{Size.Field.Limitation}") String account, @NotNull(message = "{NotNull.Field.Limitation}") @NotEmpty(message = "{Empty.Field.String}") @Size(max = 30, message = "{Size.Field.Limitation}") String type, @NotNull(message = "{NotNull.Field.Limitation}") @Min(value = 0, message = "{Size.Field.Double}") Double bidQuantity) {
         this.account = account;
         this.type = type;
         this.bidQuantity = bidQuantity;
