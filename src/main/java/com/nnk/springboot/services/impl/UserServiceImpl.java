@@ -5,7 +5,6 @@ import com.nnk.springboot.repositories.UserRepository;
 import com.nnk.springboot.services.IUserService;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +35,10 @@ public class UserServiceImpl implements IUserService {
     public User findByUsername(String username) {
         logger.info("User " + username + " find");
         return userRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException("Invalid User Username: " + username));
+    }
+
+    public Boolean getUsernameAvailability(String username) {
+        return !userRepository.existsByUsername(username);
     }
 
     @Override

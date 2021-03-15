@@ -46,8 +46,9 @@ public class BidListController {
         return "bidList/update"; }
 
     @PostMapping("/bidList/update/{id}")
-    public String updateBid(@PathVariable("id") Integer id, @Valid BidListDto bidListDto, BindingResult result) {
+    public String updateBid(@PathVariable("id") Integer id, @Valid BidListDto bidListDto, BindingResult result, Model model) {
         if(result.hasErrors()) {
+            model.addAttribute("bidList", bidListService.getSpecificBidListById(id));
             return "bidList/update";
         }
         bidListService.updateBidList(id, bidListDto);

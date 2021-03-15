@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -29,7 +30,9 @@ public class UserController {
 
     @PostMapping("/user/validate")
     public String validate(@Valid User user, BindingResult result) {
-        if (result.hasErrors()) {
+        if (result.hasErrors() || !userService.getUsernameAvailability(user.getUsername())) {
+            FieldError error = new FieldError("user", "username", "The username is already taken");
+            result.addError(error);
             return "user/add";
         }
         userService.createUser(user);

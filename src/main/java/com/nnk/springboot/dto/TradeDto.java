@@ -15,11 +15,10 @@ public class TradeDto {
     private String type;
 
     @NotNull(message = "{NotNull.Field.Limitation}")
-    @NotEmpty(message = "{Empty.Field.String}")
     @Min(value = 0, message = "{Size.Field.Double}")
     private Double buyQuantity;
 
-    public TradeDto(@NotNull(message = "{NotNull.Field.Limitation}") @NotEmpty(message = "{Empty.Field.String}") @Size(max = 30, message = "{Size.Field.Limitation}") String account, @NotNull(message = "{NotNull.Field.Limitation}") @NotEmpty(message = "{Empty.Field.String}") @Size(max = 30, message = "{Size.Field.Limitation}") String type, @NotNull(message = "{NotNull.Field.Limitation}") @NotEmpty(message = "{Empty.Field.String}") @Min(value = 0, message = "{Size.Field.Double}") Double buyQuantity) {
+    public TradeDto(@NotNull(message = "{NotNull.Field.Limitation}") @NotEmpty(message = "{Empty.Field.String}") @Size(max = 30, message = "{Size.Field.Limitation}") String account, @NotNull(message = "{NotNull.Field.Limitation}") @NotEmpty(message = "{Empty.Field.String}") @Size(max = 30, message = "{Size.Field.Limitation}") String type, @NotNull(message = "{NotNull.Field.Limitation}") @Min(value = 0, message = "{Size.Field.Double}") Double buyQuantity) {
         this.account = account;
         this.type = type;
         this.buyQuantity = buyQuantity;

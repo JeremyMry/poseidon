@@ -27,7 +27,7 @@ public class CurveController {
     }
 
     @GetMapping("/curvePoint/add")
-    public String addBidForm(CurvePointDto curvePointDto) {
+    public String addCurveForm(CurvePointDto curvePointDto) {
         return "curvePoint/add";
     }
 
@@ -47,8 +47,9 @@ public class CurveController {
     }
 
     @PostMapping("/curvePoint/update/{id}")
-    public String updateBid(@PathVariable("id") Integer id, @Valid CurvePointDto curvePointDto, BindingResult result) {
+    public String updateBid(@PathVariable("id") Integer id, @Valid CurvePointDto curvePointDto, BindingResult result, Model model) {
         if(result.hasErrors()) {
+            model.addAttribute("curvePoint", curvePointService.getSpecificCurvePointById(id));
             return "curvePoint/update";
         }
         curvePointService.updateCurvePoint(id, curvePointDto);

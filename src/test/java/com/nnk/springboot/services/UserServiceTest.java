@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
+import javax.validation.constraints.AssertFalse;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DirtiesContext(classMode=DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
@@ -24,7 +27,7 @@ public class UserServiceTest {
 
     @Test
     public void getSpecificUserTest() {
-        User user = new User("john", "123", "john doe", "ADMIN");
+        User user = new User("john", "Atemipro123;", "john doe", "ADMIN");
         userRepository.save(user);
 
         Assertions.assertNotNull(userService.getSpecificUserById(1));
@@ -44,8 +47,21 @@ public class UserServiceTest {
     }
 
     @Test
+    public void getUsernameAvailabilityTest() {
+        assertTrue(userService.getUsernameAvailability("john"));
+    }
+
+    @Test
+    public void getUsernameAvailabilityUnavailableTest() {
+        User user = new User("john", "Atemipro123;", "john doe", "ADMIN");
+        userRepository.save(user);
+
+        assertFalse(userService.getUsernameAvailability("john"));
+    }
+
+    @Test
     public void getUserByUsernameTest() {
-        User user = new User("john", "123", "john doe", "ADMIN");
+        User user = new User("john", "Atemipro123;", "john doe", "ADMIN");
         userRepository.save(user);
 
         Assertions.assertNotNull(userService.findByUsername("john"));
@@ -66,8 +82,8 @@ public class UserServiceTest {
 
     @Test
     public void getAllUserTest() {
-        User user = new User("john", "123", "john doe", "ADMIN");
-        User user1 = new User("johnny", "123", "johnny doe", "ADMIN");
+        User user = new User("john", "Atemipro123;", "john doe", "ADMIN");
+        User user1 = new User("johnny", "Atemipro123;", "johnny doe", "ADMIN");
 
         userRepository.save(user);
         userRepository.save(user1);
@@ -82,8 +98,20 @@ public class UserServiceTest {
     }
 
     @Test
+    public void createUserUnavailableUsernameTest() {
+        User user = new User("john", "Atemipro123;", "john doe", "ADMIN");
+        User user1 = new User("john", "Atemipro123;", "johnny doe", "ADMIN");
+
+        userRepository.save(user1);
+        userService.createUser(user);
+
+        Assertions.assertFalse(userService.createUser(user));
+    }
+
+    @Test
     public void createUserTest() {
-        User user = new User("john", "123", "john doe", "ADMIN");
+
+        User user = new User("john", "Atemipro123;", "john doe", "ADMIN");
 
         userService.createUser(user);
 
@@ -94,10 +122,10 @@ public class UserServiceTest {
 
     @Test
     public void updateUserTest() {
-        User user = new User("john", "123", "john doe", "ADMIN");
+        User user = new User("john", "Atemipro123;", "john doe", "ADMIN");
         userRepository.save(user);
 
-        User newUser = new User("johnny", "123", "johnny doe", "USER");
+        User newUser = new User("johnny", "Atemipro123;", "johnny doe", "USER");
         userService.updateUser(1, newUser);
 
         Assertions.assertEquals(userRepository.findById(1).get().getUsername(), "johnny");
@@ -108,7 +136,7 @@ public class UserServiceTest {
 
     @Test
     public void deleteUserTest() {
-        User user = new User("john", "123", "john doe", "ADMIN");
+        User user = new User("john", "Atemipro123;", "john doe", "ADMIN");
         userRepository.save(user);
 
         userService.deleteUser(1);
