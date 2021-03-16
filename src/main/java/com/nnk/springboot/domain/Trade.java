@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 public class Trade {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer tradeId;
 
     @NotNull
@@ -80,16 +80,16 @@ public class Trade {
         this.sellQuantity = sellQuantity;
         this.buyPrice = buyPrice;
         this.sellPrice = sellPrice;
-        this.tradeDate = tradeDate;
+        this.tradeDate = new Timestamp(tradeDate.getTime());
         this.security = security;
         this.status = status;
         this.trader = trader;
         this.benchmark = benchmark;
         this.book = book;
         this.creationName = creationName;
-        this.creationDate = creationDate;
+        this.creationDate = new Timestamp(creationDate.getTime());
         this.revisionName = revisionName;
-        this.revisionDate = revisionDate;
+        this.revisionDate = new Timestamp(revisionDate.getTime());
         this.dealName = dealName;
         this.dealType = dealType;
         this.sourceListId = sourceListId;
@@ -98,10 +98,6 @@ public class Trade {
 
     public Integer getTradeId() {
         return tradeId;
-    }
-
-    public void setTradeId(Integer tradeId) {
-        this.tradeId = tradeId;
     }
 
     public String getAccount() {
@@ -161,11 +157,11 @@ public class Trade {
     }
 
     public Timestamp getTradeDate() {
-        return tradeDate;
+        return new Timestamp(tradeDate.getTime());
     }
 
     public void setTradeDate(Timestamp tradeDate) {
-        this.tradeDate = tradeDate;
+        this.tradeDate = new Timestamp(tradeDate.getTime());
     }
 
     public String getSecurity() {
@@ -209,11 +205,11 @@ public class Trade {
     }
 
     public Timestamp getCreationDate() {
-        return creationDate;
+        return new Timestamp(creationDate.getTime());
     }
 
     public void setCreationDate(Timestamp creationDate) {
-        this.creationDate = creationDate;
+        this.creationDate = new Timestamp(creationDate.getTime());
     }
 
     public String getRevisionName() {
@@ -225,11 +221,11 @@ public class Trade {
     }
 
     public Timestamp getRevisionDate() {
-        return revisionDate;
+        return new Timestamp(revisionDate.getTime());
     }
 
     public void setRevisionDate(Timestamp revisionDate) {
-        this.revisionDate = revisionDate;
+        this.revisionDate = new Timestamp(revisionDate.getTime());
     }
 
     public String getDealName() {

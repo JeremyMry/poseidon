@@ -17,10 +17,15 @@ import java.util.List;
 public class BidListServiceImpl implements IBidListService {
 
     @Autowired
-    BidListRepository bidListRepository;
+    private BidListRepository bidListRepository;
 
     @Autowired
-    Logger logger;
+    private Logger logger;
+
+    public BidListServiceImpl(BidListRepository bidListRepository, Logger logger) {
+        this.bidListRepository = bidListRepository;
+        this.logger = logger;
+    }
 
     @Override
     public BidList getSpecificBidListById(Integer id) {

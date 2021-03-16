@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 public class CurvePoint {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
     @NotNull
@@ -36,18 +36,14 @@ public class CurvePoint {
 
     public CurvePoint(@NotNull @Min(value = 1) Integer curveId, Timestamp asOfDate, @NotNull @Min(value = 0) Double term, @NotNull @Min(value = 0) Double value, Timestamp creationDate) {
         this.curveId = curveId;
-        this.asOfDate = asOfDate;
+        this.asOfDate = new Timestamp(asOfDate.getTime());
         this.term = term;
         this.value = value;
-        this.creationDate = creationDate;
+        this.creationDate = new Timestamp(creationDate.getTime());
     }
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Integer getCurveId() {
@@ -59,11 +55,11 @@ public class CurvePoint {
     }
 
     public Timestamp getAsOfDate() {
-        return asOfDate;
+        return new Timestamp(asOfDate.getTime());
     }
 
     public void setAsOfDate(Timestamp asOfDate) {
-        this.asOfDate = asOfDate;
+        this.asOfDate = new Timestamp(asOfDate.getTime());
     }
 
     public Double getTerm() {
@@ -83,11 +79,11 @@ public class CurvePoint {
     }
 
     public Timestamp getCreationDate() {
-        return creationDate;
+        return new Timestamp(creationDate.getTime());
     }
 
     public void setCreationDate(Timestamp creationDate) {
-        this.creationDate = creationDate;
+        this.creationDate = new Timestamp(creationDate.getTime());
     }
 
     @Override

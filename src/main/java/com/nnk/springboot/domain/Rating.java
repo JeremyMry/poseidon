@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 public class Rating {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
     @Size(max = 125, message= "{Size.Field.String}")
@@ -39,10 +39,6 @@ public class Rating {
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getMoodysRating() {

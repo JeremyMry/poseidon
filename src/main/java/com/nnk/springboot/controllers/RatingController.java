@@ -17,7 +17,11 @@ import javax.validation.Valid;
 public class RatingController {
 
     @Autowired
-    RatingServiceImpl ratingService;
+    private RatingServiceImpl ratingService;
+
+    public RatingController(RatingServiceImpl ratingService) {
+        this.ratingService = ratingService;
+    }
 
     @RequestMapping("/rating/list")
     public String home(Model model)

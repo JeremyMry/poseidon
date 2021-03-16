@@ -15,10 +15,15 @@ import java.util.List;
 public class UserServiceImpl implements IUserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    Logger logger;
+    private Logger logger;
+
+    public UserServiceImpl(UserRepository userRepository, Logger logger) {
+        this.userRepository = userRepository;
+        this.logger = logger;
+    }
 
     @Override
     public User getSpecificUserById(Integer id) {

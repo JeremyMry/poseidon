@@ -17,7 +17,11 @@ import javax.validation.Valid;
 public class RuleNameController {
 
     @Autowired
-    RuleNameServiceImpl ruleNameService;
+    private RuleNameServiceImpl ruleNameService;
+
+    public RuleNameController(RuleNameServiceImpl ruleNameService) {
+        this.ruleNameService = ruleNameService;
+    }
 
     @RequestMapping("/ruleName/list")
     public String home(Model model)

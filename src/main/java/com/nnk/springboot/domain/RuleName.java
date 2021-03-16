@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 public class RuleName {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
     @Size(max = 125, message= "{Size.Field.String}")
@@ -52,10 +52,6 @@ public class RuleName {
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {

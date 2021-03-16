@@ -18,7 +18,11 @@ import javax.validation.Valid;
 public class BidListController {
 
     @Autowired
-    BidListServiceImpl bidListService;
+    private BidListServiceImpl bidListService;
+
+    public BidListController(BidListServiceImpl bidListService) {
+        this.bidListService = bidListService;
+    }
 
     @RequestMapping("/bidList/list")
     public String home(Model model) {

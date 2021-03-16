@@ -17,10 +17,10 @@ import java.util.List;
 public class CurvePointServiceImpl implements ICurvePointService {
 
     @Autowired
-    CurvePointRepository curvePointRepository;
+    private CurvePointRepository curvePointRepository;
 
     @Autowired
-    Logger logger;
+    private Logger logger;
 
     @Override
     public CurvePoint getSpecificCurvePointById(Integer id) {

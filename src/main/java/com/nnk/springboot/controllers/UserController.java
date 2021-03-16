@@ -17,6 +17,10 @@ public class UserController {
     @Autowired
     private UserServiceImpl userService;
 
+    public UserController(UserServiceImpl userService) {
+        this.userService = userService;
+    }
+
     @RequestMapping("/user/list")
     public String home(Model model) {
         model.addAttribute("users", userService.getAllUser());

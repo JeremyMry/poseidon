@@ -15,6 +15,10 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UserServiceImpl userService;
 
+    public CustomUserDetailsService(UserServiceImpl userService) {
+        this.userService = userService;
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) {
         User user = userService.findByUsername(username);

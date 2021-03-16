@@ -14,6 +14,10 @@ public class LoginController {
     @Autowired
     private UserRepository userRepository;
 
+    public LoginController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @GetMapping("/login")
     public ModelAndView login() {
         ModelAndView mav = new ModelAndView();

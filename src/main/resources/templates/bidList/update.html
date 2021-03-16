@@ -16,19 +16,19 @@
 			<div class="form-group">
 				<label for="account">Account:</label><br>
 				<input class="form-control" type="text" id="account" th:field="*{account}">
-				<div class="alert alert-warning" th:if="${#fields.hasErrors('account')}" th:errors="*{account}"></div><br>
+				<div class="alert alert-danger" th:if="${#fields.hasErrors('account')}" th:errors="*{account}"></div><br>
 			</div>
 
 			<div class="form-group">
 				<label for="type">Type:</label><br>
 				<input class="form-control" type="text" id="type" th:field="*{type}">
-				<div class="alert alert-warning" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></div><br>
+				<div class="alert alert-danger" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></div><br>
 			</div>
 
 			<div class="form-group">
 				<label for="bidQuantity">Quantity:</label><br>
 				<input class="form-control" type="number" step="any" id="bidQuantity" th:field="*{bidQuantity}">
-				<div class="alert alert-warning" th:if="${#fields.hasErrors('bidQuantity')}" th:errors="*{bidQuantity}"></div><br>
+				<div class="alert alert-danger" th:if="${#fields.hasErrors('bidQuantity')}" th:errors="*{bidQuantity}"></div><br>
 			</div>
 
 			<div class="form-group">

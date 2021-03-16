@@ -14,10 +14,15 @@ import java.util.List;
 public class RuleNameServiceImpl implements IRuleNameService {
 
     @Autowired
-    RuleNameRepository ruleNameRepository;
+    private RuleNameRepository ruleNameRepository;
 
     @Autowired
-    Logger logger;
+    private Logger logger;
+
+    public RuleNameServiceImpl(RuleNameRepository ruleNameRepository, Logger logger) {
+        this.ruleNameRepository = ruleNameRepository;
+        this.logger = logger;
+    }
 
     @Override
     public RuleName getSpecificRuleNameById(Integer id) {

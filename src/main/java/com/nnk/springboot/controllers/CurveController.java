@@ -18,7 +18,11 @@ import javax.validation.Valid;
 public class CurveController {
 
     @Autowired
-    CurvePointServiceImpl curvePointService;
+    private CurvePointServiceImpl curvePointService;
+
+    public CurveController(CurvePointServiceImpl curvePointService) {
+        this.curvePointService = curvePointService;
+    }
 
     @RequestMapping("/curvePoint/list")
     public String home(Model model) {

@@ -18,7 +18,11 @@ import javax.validation.Valid;
 public class TradeController {
 
     @Autowired
-    TradeServiceImpl tradeService;
+    private TradeServiceImpl tradeService;
+
+    public TradeController(TradeServiceImpl tradeService) {
+        this.tradeService = tradeService;
+    }
 
     @RequestMapping("/trade/list")
     public String home(Model model)

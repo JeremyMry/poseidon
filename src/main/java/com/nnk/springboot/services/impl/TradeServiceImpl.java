@@ -18,10 +18,15 @@ import java.util.List;
 public class TradeServiceImpl implements ITradeService {
 
     @Autowired
-    TradeRepository tradeRepository;
+    private TradeRepository tradeRepository;
 
     @Autowired
-    Logger logger;
+    private Logger logger;
+
+    public TradeServiceImpl(TradeRepository tradeRepository, Logger logger) {
+        this.tradeRepository = tradeRepository;
+        this.logger = logger;
+    }
 
     @Override
     public Trade getSpecificTradeById(Integer id) {

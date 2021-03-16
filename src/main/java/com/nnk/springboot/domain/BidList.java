@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 public class BidList {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer bidListId;
 
     @NotNull
@@ -83,16 +83,16 @@ public class BidList {
         this.bid = bid;
         this.ask = ask;
         this.benchmark = benchmark;
-        this.bidListDate = bidListDate;
+        this.bidListDate = new Timestamp(bidListDate.getTime());
         this.commentary = commentary;
         this.security = security;
         this.status = status;
         this.trader = trader;
         this.book = book;
         this.creationName = creationName;
-        this.creationDate = creationDate;
+        this.creationDate = new Timestamp(creationDate.getTime());
         this.revisionName = revisionName;
-        this.revisionDate = revisionDate;
+        this.revisionDate = new Timestamp(revisionDate.getTime());
         this.dealName = dealName;
         this.dealType = dealType;
         this.sourceListId = sourceListId;
@@ -160,11 +160,14 @@ public class BidList {
     }
 
     public Timestamp getBidListDate() {
-        return bidListDate;
+        if(this.bidListDate == null){
+            return null;
+        }
+        return new Timestamp(this.bidListDate.getTime());
     }
 
     public void setBidListDate(Timestamp bidListDate) {
-        this.bidListDate = bidListDate;
+        this.bidListDate = new Timestamp(this.bidListDate.getTime());
     }
 
     public String getCommentary() {
@@ -216,11 +219,11 @@ public class BidList {
     }
 
     public Timestamp getCreationDate() {
-        return creationDate;
+        return new Timestamp(creationDate.getTime());
     }
 
     public void setCreationDate(Timestamp creationDate) {
-        this.creationDate = creationDate;
+        this.creationDate = new Timestamp(creationDate.getTime());
     }
 
     public String getRevisionName() {
@@ -232,11 +235,11 @@ public class BidList {
     }
 
     public Timestamp getRevisionDate() {
-        return revisionDate;
+        return new Timestamp(revisionDate.getTime());
     }
 
     public void setRevisionDate(Timestamp revisionDate) {
-        this.revisionDate = revisionDate;
+        this.revisionDate = new Timestamp(revisionDate.getTime());
     }
 
     public String getDealName() {
