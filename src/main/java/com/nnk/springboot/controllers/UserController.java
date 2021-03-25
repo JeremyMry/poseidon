@@ -14,7 +14,6 @@ import javax.validation.Valid;
 @Controller
 public class UserController {
 
-    @Autowired
     private UserServiceImpl userService;
 
     public UserController(UserServiceImpl userService) {
@@ -52,6 +51,7 @@ public class UserController {
     @PostMapping("/user/update/{id}")
     public String updateUser(@PathVariable("id") Integer id, @Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            model.addAttribute("user", userService.getSpecificUserById(id));
             return "user/update";
         }
         userService.updateUser(id, user);

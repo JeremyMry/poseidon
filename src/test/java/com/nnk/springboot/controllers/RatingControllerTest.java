@@ -3,6 +3,7 @@ package com.nnk.springboot.controllers;
 import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.services.impl.CustomUserDetailsService;
 import com.nnk.springboot.services.impl.RatingServiceImpl;
+import com.nnk.springboot.services.impl.UserInfoImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,9 @@ public class RatingControllerTest {
 
     @MockBean
     private CustomUserDetailsService customUserDetailsService;
+
+    @MockBean
+    private UserInfoImpl userInfo;
 
     @Test
     public void ratingGetAllRatingControllerTest() throws Exception {

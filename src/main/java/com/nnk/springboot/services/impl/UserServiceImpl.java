@@ -4,7 +4,6 @@ import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
 import com.nnk.springboot.services.IUserService;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +13,8 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements IUserService {
 
-    @Autowired
     private UserRepository userRepository;
 
-    @Autowired
     private Logger logger;
 
     public UserServiceImpl(UserRepository userRepository, Logger logger) {

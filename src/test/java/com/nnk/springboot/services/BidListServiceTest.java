@@ -4,11 +4,13 @@ import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.dto.BidListDto;
 import com.nnk.springboot.repositories.BidListRepository;
 import com.nnk.springboot.services.impl.BidListServiceImpl;
+import com.nnk.springboot.services.impl.UserServiceImpl;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.test.annotation.DirtiesContext;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;

@@ -2,31 +2,37 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.dto.BidListDto;
 import com.nnk.springboot.services.impl.BidListServiceImpl;
+import com.nnk.springboot.services.impl.UserInfoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 
 @Controller
 public class BidListController {
 
-    @Autowired
     private BidListServiceImpl bidListService;
 
-    public BidListController(BidListServiceImpl bidListService) {
+    private UserInfoImpl userInfoImpl;
+
+    public BidListController(BidListServiceImpl bidListService, UserInfoImpl userInfoImpl) {
         this.bidListService = bidListService;
+        this.userInfoImpl = userInfoImpl;
     }
 
-    @RequestMapping("/bidList/list")
-    public String home(Model model) {
+
+    @GetMapping("/bidList/list")
+    public String home(Model model, Principal user) {
         model.addAttribute("bidLists", bidListService.getAllBidList());
+        model.addAttribute("user", userInfoImpl.getUserInfo(user));
         return "bidList/list";
     }
 

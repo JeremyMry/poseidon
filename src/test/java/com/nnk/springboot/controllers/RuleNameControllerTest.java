@@ -3,6 +3,7 @@ package com.nnk.springboot.controllers;
 import com.nnk.springboot.domain.RuleName;
 import com.nnk.springboot.services.impl.CustomUserDetailsService;
 import com.nnk.springboot.services.impl.RuleNameServiceImpl;
+import com.nnk.springboot.services.impl.UserInfoImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,9 @@ public class RuleNameControllerTest {
 
     @MockBean
     private CustomUserDetailsService customUserDetailsService;
+
+    @MockBean
+    private UserInfoImpl userInfo;
 
     @Test
     public void bidListGetAllRuleNameControllerTest() throws Exception {

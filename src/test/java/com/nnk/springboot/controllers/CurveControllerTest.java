@@ -3,6 +3,7 @@ package com.nnk.springboot.controllers;
 import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.services.impl.CurvePointServiceImpl;
 import com.nnk.springboot.services.impl.CustomUserDetailsService;
+import com.nnk.springboot.services.impl.UserInfoImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,9 @@ public class CurveControllerTest {
 
     @MockBean
     private CustomUserDetailsService customUserDetailsService;
+
+    @MockBean
+    private UserInfoImpl userInfo;
 
     @Test
     public void getAllCurvePointControllerTest() throws Exception {

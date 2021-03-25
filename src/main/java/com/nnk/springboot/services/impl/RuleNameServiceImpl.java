@@ -4,7 +4,6 @@ import com.nnk.springboot.domain.RuleName;
 import com.nnk.springboot.repositories.RuleNameRepository;
 import com.nnk.springboot.services.IRuleNameService;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -13,10 +12,8 @@ import java.util.List;
 @Service
 public class RuleNameServiceImpl implements IRuleNameService {
 
-    @Autowired
     private RuleNameRepository ruleNameRepository;
 
-    @Autowired
     private Logger logger;
 
     public RuleNameServiceImpl(RuleNameRepository ruleNameRepository, Logger logger) {

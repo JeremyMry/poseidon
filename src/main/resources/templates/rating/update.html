@@ -14,7 +14,7 @@
 	</div>
 
 	<div class="row">
-		<form action="#" th:action="@{/rating/update/{id}(id=${rating.id})}" th:object="${rating}" method="post" class="form-horizontal" style="width: 100%">
+		<form action="#" th:action="@{/rating/update/{id}(id=${ratingUpdate.id})}" th:object="${rating}" method="post" class="form-horizontal" style="width: 100%">
 			<div class="form-group">
 				<label for="moodysRating">Moody's Rating:</label><br>
 				<input class="form-control" type="text" th:field="*{moodysRating}" id="moodysRating">

@@ -5,7 +5,6 @@ import com.nnk.springboot.dto.CurvePointDto;
 import com.nnk.springboot.repositories.CurvePointRepository;
 import com.nnk.springboot.services.ICurvePointService;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -16,11 +15,14 @@ import java.util.List;
 @Service
 public class CurvePointServiceImpl implements ICurvePointService {
 
-    @Autowired
     private CurvePointRepository curvePointRepository;
 
-    @Autowired
     private Logger logger;
+
+    public CurvePointServiceImpl(CurvePointRepository curvePointRepository, Logger logger) {
+        this.curvePointRepository = curvePointRepository;
+        this.logger = logger;
+    }
 
     @Override
     public CurvePoint getSpecificCurvePointById(Integer id) {

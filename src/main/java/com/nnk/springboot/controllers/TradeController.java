@@ -1,9 +1,8 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.dto.TradeDto;
 import com.nnk.springboot.services.impl.TradeServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.nnk.springboot.services.impl.UserInfoImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,20 +12,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 public class TradeController {
 
-    @Autowired
     private TradeServiceImpl tradeService;
 
-    public TradeController(TradeServiceImpl tradeService) {
+    private UserInfoImpl userInfoImpl;
+
+    public TradeController(TradeServiceImpl tradeService, UserInfoImpl userInfoImpl) {
         this.tradeService = tradeService;
+        this.userInfoImpl = userInfoImpl;
     }
 
     @RequestMapping("/trade/list")
-    public String home(Model model)
+    public String home(Model model, Principal user)
     {
+        model.addAttribute("user", userInfoImpl.getUserInfo(user));
         model.addAttribute("trades", tradeService.getAllTrade());
         return "trade/list";
     }

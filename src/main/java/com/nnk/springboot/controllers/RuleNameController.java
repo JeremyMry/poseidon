@@ -2,7 +2,7 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.RuleName;
 import com.nnk.springboot.services.impl.RuleNameServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.nnk.springboot.services.impl.UserInfoImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,20 +12,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 public class RuleNameController {
 
-    @Autowired
     private RuleNameServiceImpl ruleNameService;
 
-    public RuleNameController(RuleNameServiceImpl ruleNameService) {
+    private UserInfoImpl userInfoImpl;
+
+    public RuleNameController(RuleNameServiceImpl ruleNameService, UserInfoImpl userInfoImpl) {
         this.ruleNameService = ruleNameService;
+        this.userInfoImpl = userInfoImpl;
     }
 
     @RequestMapping("/ruleName/list")
-    public String home(Model model)
-    {
+    public String home(Model model, Principal user) {
+        model.addAttribute("user", userInfoImpl.getUserInfo(user));
         model.addAttribute("ruleNames", ruleNameService.getAllRuleName());
         return "ruleName/list";
     }
@@ -46,13 +49,14 @@ public class RuleNameController {
 
     @GetMapping("/ruleName/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model, RuleName ruleName) {
-        model.addAttribute("ruleName", ruleNameService.getSpecificRuleNameById(id));
+        model.addAttribute("ruleNameUpdate", ruleNameService.getSpecificRuleNameById(id));
         return "ruleName/update";
     }
 
     @PostMapping("/ruleName/update/{id}")
-    public String updateRuleName(@PathVariable("id") Integer id, @Valid RuleName ruleName, BindingResult result) {
+    public String updateRuleName(@PathVariable("id") Integer id, @Valid RuleName ruleName, BindingResult result, Model model) {
         if(result.hasErrors()) {
+            model.addAttribute("ruleNameUpdate", ruleNameService.getSpecificRuleNameById(id));
             return "ruleName/update";
         }
         ruleNameService.updateRuleName(id, ruleName);

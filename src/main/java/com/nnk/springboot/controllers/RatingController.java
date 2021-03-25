@@ -2,7 +2,7 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.services.impl.RatingServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.nnk.springboot.services.impl.UserInfoImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,20 +12,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 public class RatingController {
 
-    @Autowired
     private RatingServiceImpl ratingService;
 
-    public RatingController(RatingServiceImpl ratingService) {
+    private UserInfoImpl userInfoImpl;
+
+    public RatingController(RatingServiceImpl ratingService, UserInfoImpl userInfoImpl) {
         this.ratingService = ratingService;
+        this.userInfoImpl = userInfoImpl;
     }
 
     @RequestMapping("/rating/list")
-    public String home(Model model)
-    {
+    public String home(Model model, Principal user) {
+        model.addAttribute("user", userInfoImpl.getUserInfo(user));
         model.addAttribute("ratingList", ratingService.getAllRating());
         return "rating/list";
     }
@@ -46,13 +49,14 @@ public class RatingController {
 
     @GetMapping("/rating/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model, Rating rating) {
-        model.addAttribute("ratingList", ratingService.getSpecificRatingById(id));
+        model.addAttribute("ratingUpdate", ratingService.getSpecificRatingById(id));
         return "rating/update";
     }
 
     @PostMapping("/rating/update/{id}")
-    public String updateRating(@PathVariable("id") Integer id, @Valid Rating rating, BindingResult result) {
+    public String updateRating(@PathVariable("id") Integer id, @Valid Rating rating, BindingResult result, Model model) {
         if(result.hasErrors()) {
+            model.addAttribute("ratingUpdate", ratingService.getSpecificRatingById(id));
             return "rating/update";
         }
         ratingService.updateRating(id, rating);

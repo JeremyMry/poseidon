@@ -1,9 +1,8 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.dto.CurvePointDto;
 import com.nnk.springboot.services.impl.CurvePointServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.nnk.springboot.services.impl.UserInfoImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,20 +12,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 public class CurveController {
 
-    @Autowired
     private CurvePointServiceImpl curvePointService;
 
-    public CurveController(CurvePointServiceImpl curvePointService) {
+    private UserInfoImpl userInfoImpl;
+
+    public CurveController(CurvePointServiceImpl curvePointService, UserInfoImpl userInfoImpl) {
         this.curvePointService = curvePointService;
+        this.userInfoImpl = userInfoImpl;
     }
 
     @RequestMapping("/curvePoint/list")
-    public String home(Model model) {
+    public String home(Model model, Principal user) {
         model.addAttribute("curvePoints", curvePointService.getAllCurvePoint());
+        model.addAttribute("user", userInfoImpl.getUserInfo(user));
         return "curvePoint/list";
     }
 

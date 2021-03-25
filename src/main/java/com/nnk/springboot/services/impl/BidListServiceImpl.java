@@ -16,10 +16,8 @@ import java.util.List;
 @Service
 public class BidListServiceImpl implements IBidListService {
 
-    @Autowired
     private BidListRepository bidListRepository;
 
-    @Autowired
     private Logger logger;
 
     public BidListServiceImpl(BidListRepository bidListRepository, Logger logger) {

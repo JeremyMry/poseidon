@@ -3,6 +3,8 @@ package com.nnk.springboot.controllers;
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.services.impl.BidListServiceImpl;
 import com.nnk.springboot.services.impl.CustomUserDetailsService;
+import com.nnk.springboot.services.impl.UserInfoImpl;
+import com.nnk.springboot.services.impl.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,9 @@ public class BidListControllerTest {
 
     @MockBean
     private CustomUserDetailsService customUserDetailsService;
+
+    @MockBean
+    private UserInfoImpl userInfo;
 
     @Test
     public void bidListGetAllBidListControllerTest() throws Exception {

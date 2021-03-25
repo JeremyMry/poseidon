@@ -2,6 +2,7 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.services.impl.CustomUserDetailsService;
+import com.nnk.springboot.services.impl.UserInfoImpl;
 import com.nnk.springboot.services.impl.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -34,6 +35,9 @@ public class UserControllerTest {
 
     @MockBean
     private CustomUserDetailsService customUserDetailsService;
+
+    @MockBean
+    private UserInfoImpl userInfo;
 
     @Test
     public void bidListGetAllUsersControllerTest() throws Exception {

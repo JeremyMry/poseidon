@@ -4,7 +4,6 @@ import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.repositories.RatingRepository;
 import com.nnk.springboot.services.IRatingService;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -13,10 +12,8 @@ import java.util.List;
 @Service
 public class RatingServiceImpl implements IRatingService {
 
-    @Autowired
     private RatingRepository ratingRepository;
 
-    @Autowired
     private Logger logger;
 
     public RatingServiceImpl(RatingRepository ratingRepository, Logger logger) {

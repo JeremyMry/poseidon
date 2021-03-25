@@ -14,7 +14,7 @@
 	</div>
 
 	<div class="row">
-		<form action="#" th:action="@{/ruleName/update/{id}(id=${ruleName.id})}" th:object="${ruleName}" method="post" class="form-horizontal" style="width: 100%">
+		<form action="#" th:action="@{/ruleName/update/{id}(id=${ruleNameUpdate.id})}" th:object="${ruleName}" method="post" class="form-horizontal" style="width: 100%">
 			<div class="form-group">
 				<label for="name">Name:</label><br>
 				<input class="form-control" type="text" th:field="*{name}" id="name">

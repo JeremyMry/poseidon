@@ -1,12 +1,10 @@
 package com.nnk.springboot.services.impl;
 
-import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.dto.TradeDto;
 import com.nnk.springboot.repositories.TradeRepository;
 import com.nnk.springboot.services.ITradeService;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -17,10 +15,8 @@ import java.util.List;
 @Service
 public class TradeServiceImpl implements ITradeService {
 
-    @Autowired
     private TradeRepository tradeRepository;
 
-    @Autowired
     private Logger logger;
 
     public TradeServiceImpl(TradeRepository tradeRepository, Logger logger) {
