@@ -4,8 +4,9 @@ LIST OF ENDPOINTS
 
 EndPoints that doesn't require Authorization and Authentication:
  
+ - "localhost:8080/"
  - "localhost:8080/user/add" 
- 
+ - "localhost:8080/login"
  - "localhost:8080/user/validate" 
 
 EndPoints that require Authentication :
